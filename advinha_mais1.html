@@ -1,0 +1,90 @@
+<meta charset="UTF-8">  
+
+<input/>  <!-- Caixa de entrada -->
+<button>Compare com o meu segredo</button> <!-- botão -->
+
+<script> //Caixa que inclui apenas o JavaScript
+
+
+    function sorteia() {
+
+        return Math.round(Math.random() * 10);
+
+    }
+
+    function sorteiaNumeros(quantidade) {
+
+        var segredos = [];
+        var numero = 1; 
+        while(numero <= quantidade) {
+
+            var numeroAleatorio = sorteia();
+
+                if(numeroAleatorio !== 0 ) {
+
+                var achou = false;
+
+                for(var posicao = 0; posicao < segredos.length; posicao++) {
+
+                    if(segredos[posicao] == numeroAleatorio) {
+
+                        achou = true;
+                        break;
+
+                    }
+
+                } 
+
+                if (achou == false) {
+
+                segredos.push(numeroAleatorio);
+                numero++;
+
+                }
+
+            }
+
+    }
+
+        return segredos;
+
+    }
+
+    var segredos = sorteiaNumeros(3); //Definindo a variável segredos, que usa o []para criar uma lista de elementos separadas por virgula
+    console.log(segredos); //mostra no console o número aleatório gerado
+
+    var input = document.querySelector("input"); //Definindo a variável input, que recebe o seletor de função HTML, assim, guarda o input do HTML em uma variável do JavaScript
+    input.focus(); //Executa o comando de entrar na caixa do input
+
+    function verifica() {  //Função que compara se o valor digitado no input é igual a variável segredo
+
+        var achou = false; //Definindo a variável achou, que recebe false
+
+        for (var posicao = 0; posicao < segredos.length; posicao++) { //Cria um laço de repetição; Define a variavel posicao como 0; compara se a variável posicao é menor que o números de elementos da variável segredos; Adiciona 1+ na variáveç segredos
+
+            if(input.value == segredos[posicao]) { //Se for igual, mostra a mensagem que está dentro do bloco em forma de pop up
+
+                alert("Você acertou!");
+                achou = true; //Se acertou, a variável achou vira true
+                break; //Quebra o laço de repetição
+
+            }
+        }
+
+        if (achou == false) { //Se achou for igual a false, mostra a mensagem em forma de pop up escrita no bloco
+
+        alert("Você errou!");
+
+        }
+
+        input.value = ""; //Limpa a caixa do input
+        input.focus(); //Executa o comando de entrar na caixa do input
+
+    }
+
+    var button = document.querySelector("button"); //Definindo a variável button, que recebe o seletor de função HTML, assim, guarda o button do HTML em uma variável do JavaScript
+
+    button.onclick = verifica; //Ao clicar no botão, executa o código que está dentro da função verifica
+
+
+</script> 
